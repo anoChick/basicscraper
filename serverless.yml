@@ -1,0 +1,17 @@
+service: basicscraper
+custom: ${file(./serverless.vars.yml)}
+plugins:
+  - serverless-run-function-plugin
+  - serverless-offline
+  - serverless-plugin-stage-variables
+provider:
+  name: aws
+  runtime: nodejs4.3
+  region: ap-northeast-1
+functions:
+  scrape:
+    handler: handler.scrape
+    events:
+     - http:
+         path: scrape
+         method: get
